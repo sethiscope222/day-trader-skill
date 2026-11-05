@@ -1,6 +1,6 @@
 # The Day Trader skill
 
-11 Claude skills for day trading: scan thousands of charts, track breaking news, time every entry and exit, and replay every outcome before you risk a dollar.
+12 Claude skills for day trading: scan thousands of charts, track breaking news, time every entry and exit, replay every outcome before you risk a dollar, and journal every trade.
 
 Free, MIT, no signup, no API key. The tools are plain Python that read free
 public data: Yahoo Finance charts, Nasdaq Trader's symbol lists, SEC EDGAR
@@ -57,7 +57,7 @@ The tools need Python 3.8 or newer. Nothing to pip install. The SEC tools
 email in `trader/config.json` (`"sec_user_agent": "Your Name you@example.com"`)
 or in the `SEC_USER_AGENT` environment variable.
 
-## The eleven
+## The twelve
 
 | command | job | what it does |
 | --- | --- | --- |
@@ -72,6 +72,7 @@ or in the `SEC_USER_AGENT` environment variable.
 | `/trader-alerts` | Price Alerts | Rings when a price, a stop or the opening bell hits. |
 | `/trader-analyst` | Earnings Analyst | Reads earnings reports and sums up what changed. |
 | `/trader-pelosi` | Pelosi Tracker | Reads Congress's stock-trade disclosures the minute they are filed. |
+| `/trader-journal` | Trade Journal | Records every trade's setup, fills, slippage and P&L, and reports what works by setup. |
 
 ## How to use it
 
@@ -81,6 +82,7 @@ what the last one wrote:
 ```
 scanner -> news -> entry -> exit -> timemachine -> budget -> risk -> broker   (one trade)
 alerts: stop, target, flat by the close                                       (while it is open)
+journal: fills -> P&L, slippage and R, results by setup                       (after it closes)
 news / analyst / pelosi                                                        (on a schedule)
 ```
 
@@ -119,6 +121,14 @@ An example, the trade in the reel: Tesla, Monday October 19 2026, real data.
    card asks you one more time.
 9. **`/trader-alerts`** rings on the stop, the target and at 3:55 PM to
    flatten whatever is still open.
+10. **`/trader-journal`** after the trade closes: it reads the fills (Alpaca's
+    own, or the ones trader-broker logged), pairs the buy with the sell, and
+    keeps the plan beside them. Say the entry filled at 364.21 and the stop at
+    358.27: that is -$47.52, -1.01R, 64 cents of slippage past the $46.88 the
+    plan allowed. `report` adds every trade up by setup: win rate, net P&L,
+    average R, profit factor, slippage, and the Time Machine's odds next to
+    what really happened. (Those fills are an illustration, not that day's
+    real outcome.)
 
 ## The tools
 
@@ -141,6 +151,8 @@ python3 trader-alerts/alerts.py add --from-plan                        # stop, t
 python3 trader-alerts/alerts.py check                                  # rings what hit, once
 python3 trader-analyst/facts.py TSLA                                   # quarters, growth, EPS
 python3 trader-pelosi/ptr.py index --member pelosi                     # her PTRs this year
+python3 trader-journal/journal.py sync --fills trader/alpaca-fills.json  # fills -> trader/journal.json
+python3 trader-journal/journal.py report                               # P&L, win rate, R, slippage by setup
 ```
 
 ```bash
@@ -210,6 +222,7 @@ trader-broker/      SKILL.md, ticket.py, claude_desktop_config.example.json
 trader-alerts/      SKILL.md, alerts.py, alerts.example.json
 trader-analyst/     SKILL.md, facts.py, metrics.example.json
 trader-pelosi/      SKILL.md, ptr.py
+trader-journal/     SKILL.md, journal.py
 tests/              unittest suite + offline fixtures
 ```
 
