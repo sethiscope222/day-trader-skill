@@ -1,0 +1,8 @@
+[
+  {"id": "20261020101502123::1", "activity_type": "FILL", "transaction_time": "2026-10-20T14:05:11.120Z", "type": "partial_fill", "price": "250.10", "qty": "6", "side": "buy", "symbol": "AAPL", "leaves_qty": "4", "order_id": "c5e3f406-7182-4930-9c4d-5e6f708192a3", "cum_qty": "6", "order_status": "partially_filled"},
+  {"id": "20261020101502456::2", "activity_type": "FILL", "transaction_time": "2026-10-20T14:05:11.384Z", "type": "fill", "price": "250.14", "qty": "4", "side": "buy", "symbol": "AAPL", "leaves_qty": "0", "order_id": "c5e3f406-7182-4930-9c4d-5e6f708192a3", "cum_qty": "10", "order_status": "filled"},
+  {"id": "20261020121755789::3", "activity_type": "FILL", "transaction_time": "2026-10-20T16:17:55.902Z", "type": "fill", "price": "252.50", "qty": "10", "side": "sell", "symbol": "AAPL", "leaves_qty": "0", "order_id": "d6f40517-8293-4a41-8d5e-6f708192a3b4", "cum_qty": "10", "order_status": "filled"},
+  {"id": "20261020095501000::4", "activity_type": "FILL", "transaction_time": "2026-10-20T19:55:03.250Z", "type": "fill", "price": "18.02", "qty": "100", "side": "sell", "symbol": "SOFI", "leaves_qty": "0", "order_id": "e7051628-93a4-4b52-9e6f-708192a3b4c5", "cum_qty": "100", "order_status": "filled"},
+  {"id": "20261020103002000::5", "activity_type": "FILL", "transaction_time": "2026-10-20T14:30:02.010Z", "type": "fill", "price": "17.85", "qty": "100", "side": "buy", "symbol": "SOFI", "leaves_qty": "0", "order_id": "f8162739-a4b5-4c63-8f70-8192a3b4c5d6", "cum_qty": "100", "order_status": "filled"},
+  {"id": "20261020103002999::6", "activity_type": "DIV", "date": "2026-10-20", "net_amount": "1.20", "symbol": "KO"}
+]
